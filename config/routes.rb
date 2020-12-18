@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     get 'customers/show'
     get 'customers/edit'
     get 'customers/unsubscribe'
+    
+    
+    get 'orders/done'
+    resources :orders
   end
 
   scope module: :public do
