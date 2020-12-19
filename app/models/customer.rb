@@ -15,6 +15,8 @@ class Customer < ApplicationRecord
   end
   
   
+  #editied by ふくやま
   has_many :cards
-  has_many :cart_items
+  has_many :cart_items　
+  #editied by ふくやま
 end
