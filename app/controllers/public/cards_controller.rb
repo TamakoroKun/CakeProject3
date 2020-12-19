@@ -11,7 +11,7 @@ class Public::CardsController < ApplicationController
  # indexアクションはここでは省略
 
   def create #PayjpとCardのデータベースを作成
-    Payjp.api_key = '秘密鍵'
+    Payjp.api_key = 'sk_test_8b4046a272149ee75949cca9'
 
     if params['payjp-token'].blank?
       redirect_to action: "new"

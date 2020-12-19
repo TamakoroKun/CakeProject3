@@ -2,18 +2,18 @@ class Public::OrdersController < ApplicationController
     
     
   def index
-    @user = current_user
-    @orderedItemHoge = @user.orderedItem
+    @customer = current_customer
+    @orderedItemHoge = @customer.orderedItem
   end
   
   def new
-    @user = current_user
-    @orderedItemHoge = @user.orderedItem
+    @customer = current_customer
+    @orderedItemHoge = @customer.orderedItem
   end  
   
   def confirm
-    @user = current_user
-    @orderedItemHoge = @user.orderedItem
+    @customer = current_customer
+    @orderedItemHoge = @customer.orderedItem
     #payJP
     
     

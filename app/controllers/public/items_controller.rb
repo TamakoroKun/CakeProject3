@@ -20,7 +20,7 @@ class Public::ItemsController < ApplicationController
       card: params['payjp-token'], # フォームを送信すると作成・送信されてくるトークン
       currency: 'jpy'
     )
-  end
+  end  #editied by ふくやま
 
 
   private
