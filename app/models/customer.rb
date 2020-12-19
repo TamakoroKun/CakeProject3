@@ -14,4 +14,7 @@ class Customer < ApplicationRecord
     super && self.is_deleted == '有効'
   end
   
+  
+  has_many :cards
+  has_many :cart_items
 end

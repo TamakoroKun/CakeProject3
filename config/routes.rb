@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     get 'customers/edit'
     get 'customers/unsubscribe'
     patch "customers" => "customers#update"
+    
+    
+    get 'orders/done'
+    resources :orders
   end
 
   scope module: :public do
