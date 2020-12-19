@@ -2,6 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def current_cart_items
+  begin
+   CartItems.find(session[:cart_items_id])
+   rescue ActiveRecord::RecordNotFound
+   cart_item = CartItem.crete
+   session[:cart_item_id] = cart_item.id
+  end
+
+
+
   protected
 
   def configure_permitted_parameters
@@ -13,6 +23,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:address])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:phone_number])
   end
-  
-  
+
+
 end
