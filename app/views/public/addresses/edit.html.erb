@@ -1,2 +1,8 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<h2>配送先編集</h2>
+
+<%= form_with model:@address, local:true do |f| %>
+  <p>郵便番号（ハイフンなし）</p><%= f.text_field :postal_code, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>住所</p>  <%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>宛名</p><%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <%= f.submit "編集する" %>
+<% end %>

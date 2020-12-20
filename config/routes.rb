@@ -1,22 +1,32 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/edit'
+    get 'customers/show'
+  end
   root :to => "homes#top"
   get "home/about" => "homes#about"
 
-  devise_for :customers
+ devise_for :customers, controllers: {
+    registrations: "customers/registrations",
+  }
 
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
     get 'customers/show'
     get 'customers/edit'
     get 'customers/unsubscribe'
+    patch "customers" => "customers#update"
+
+
+    get 'orders/done'
+    resources :orders
   end
 
   scope module: :public do
     get "customers/my_page" => "customers#show"
     get "customers/edit" => "customers#edit"
-    patch "customers" => "customers#update"
+
     get "customers/unsubscribe" => "customers#unsubscribe"
     patch "customers/withdraw" => "customers#withdraw"
   end
@@ -36,5 +46,6 @@ Rails.application.routes.draw do
 namespace :admin do
    resources :items
 end
+
 
 end
