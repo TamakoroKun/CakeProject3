@@ -6,4 +6,7 @@
   <p>ジャンル：<%= @item.genre.name %></p>
   <p>税込価格（税抜価格）：<%= @item.price %></p>
   <p>販売ステータス<%= @itemis_active %></p>
+  <% if @item.customer == current_customer %>
+  <p><%= link_to "編集",  edit_admin_item_path(@item.id), class: 'btn btn-default' %></p>
+  <% end %>
 </div>

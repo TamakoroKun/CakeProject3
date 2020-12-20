@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "home/about" => "homes#about"
 
   devise_for :customers
- 
+
   namespace :public do
     get 'addresses/index'
     get 'addresses/edit'
@@ -20,13 +20,21 @@ Rails.application.routes.draw do
     get "customers/unsubscribe" => "customers#unsubscribe"
     patch "customers/withdraw" => "customers#withdraw"
   end
-  
+
   namespace :admin do
     resources :customer, :except => [:destroy, :new, :create]
   end
-  
+
   scope module: :public do
     resources :addresses,  :except => :new
   end
-  
+
+  namespace :public do
+  resources :items
+  end
+
+namespace :admin do
+   resources :items
+end
+
 end
