@@ -47,5 +47,9 @@ namespace :admin do
    resources :items
 end
 
+ namespace :admin do
+  resources :genres
+  end
+
 
 end

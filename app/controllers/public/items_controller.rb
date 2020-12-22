@@ -1,18 +1,17 @@
 class Public::ItemsController < ApplicationController
 
+require 'payjp'
 
-  require 'payjp'
-
-
-
-  def index
+ def index
      @items = Item.all
-  end
+ end
 
   def show
     @item = Item.find(params[:id])
+     @cart_item = CartItem.new
+  	@genres = Genre.all
   end
-  
+
   def purchase
     Payjp.api_key = "秘密鍵"
     Payjp::Charge.create(

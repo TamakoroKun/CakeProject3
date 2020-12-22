@@ -10,31 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2020_12_20_074604) do
 
-ActiveRecord::Schema.define(version: 2020_12_19_085710) do
-
-
-create_table "addresses", force: :cascade do |t|
+  create_table "addresses", force: :cascade do |t|
     t.string "name"
     t.string "postal_code"
     t.string "address"
     t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
   end
 
-create_table "cards", force: :cascade do |t|
+  create_table "cards", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "customer_id", null: false
     t.string "card_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_cards_on_user_id"
-
   end
 
-create_table "customers", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -54,18 +50,26 @@ create_table "customers", force: :cascade do |t|
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated"
+    t.boolean "is_active"
+    t.datetime "updated_at", null: false
+  end
 
-
-create_table "items", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.integer "genre_id"
     t.string "image_id"
     t.string "name"
     t.text "introduction"
     t.integer "price"
     t.boolean "is_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-create_table "orders", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.string "name"
     t.string "postal_code"
     t.string "address"
