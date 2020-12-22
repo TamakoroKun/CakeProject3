@@ -1,0 +1,35 @@
+<h3>注文情報確認</h3>
+
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>注文日</th>
+      <th>配送先</th>
+      <th>注文商品</th>
+      <th>支払金額</th>
+      <th>ステータス</th>
+      <th>注文詳細</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>yyyy/mm/dd</td>
+        <td>郵便番号、住所、名前</td>
+        <td>いちごのタルト</td>
+        <td>100円</td>
+        <td>発送済み</td>
+        <td>表示するボタン</td>
+      </tr>
+  </tbody>
+  
+  支払い方法　"クレジットカード"
+  
+  お届け先　"ooo-ooooo"
+  
+  = form_with url: purchase_item_path do
+  :plain
+    <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="
+pk_test_7195834ff768a651c7d6e511"></script>

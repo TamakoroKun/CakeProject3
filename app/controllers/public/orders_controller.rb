@@ -3,12 +3,13 @@ class Public::OrdersController < ApplicationController
     
   def index
     @customer = current_customer
-    @orderedItemHoge = @customer.orderedItem
+    #@orderedItemHoge = @customer.orderedItem
   end
   
   def new
     @customer = current_customer
-    @orderedItemHoge = @customer.orderedItem
+    @addresses = current_customer.addresses
+    @address = current_customer.address
   end  
   
   def confirm
@@ -20,27 +21,20 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-      
+      #payJPを使うのでいらない？
   end  
   
   def done
-      
+    
   end  
   
   def show
-      
+        @customer = Customer.find(params[:id])
+        @orderedItemHoge = @customer.orderedItem
   end  
-  
-  def done
-      
-  end    
     
     
   private
   
   
-  
-  
-  
-    
 end

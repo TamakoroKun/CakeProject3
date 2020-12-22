@@ -35,7 +35,7 @@ class Public::CartItemsController < ApplicationController
 			@items = @customers.cart_items
 			@items.destroy_all
 			redirect_to public_cart_items_path
-		else render :index
+		else　render :index
 		end
 	end
 
