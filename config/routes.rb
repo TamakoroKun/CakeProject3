@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root :to => "homes#top"
   get "home/about" => "homes#about"
-  
+
   namespace :admin do
     get 'customers/index'
     get 'customers/edit'
@@ -21,11 +21,7 @@ Rails.application.routes.draw do
     get 'customers/edit'
     get 'customers/unsubscribe'
     patch "customers" => "customers#update"
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 038317bd90434d65c5f9e2ae3f234d7a8331c5ea
     get 'orders/done'
     resources :orders
   end
@@ -33,10 +29,8 @@ Rails.application.routes.draw do
   scope module: :public do
     get "customers/my_page" => "customers#show"
     get "customers/edit" => "customers#edit"
-<<<<<<< HEAD
 
-=======
->>>>>>> 038317bd90434d65c5f9e2ae3f234d7a8331c5ea
+
     get "customers/unsubscribe" => "customers#unsubscribe"
     patch "customers/withdraw" => "customers#withdraw"
   end
@@ -49,7 +43,6 @@ Rails.application.routes.draw do
     resources :addresses,  :except => :new
   end
 
-<<<<<<< HEAD
   namespace :public do
   resources :items
   end
@@ -63,6 +56,4 @@ end
   end
 
 
-=======
->>>>>>> 038317bd90434d65c5f9e2ae3f234d7a8331c5ea
 end
