@@ -6,8 +6,8 @@ class Public::CartItemsController < ApplicationController
 
 
 	def create
-		@items = current_end_user.cart_items.new(cart_item_params)
-		if @items.save
+		@cart_items = current_customers.cart_items.new(cart_item_params)
+		if @cart_items.save
 			redirect_to public_cart_items_path(@items)
 		else render :index
 		end

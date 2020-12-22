@@ -2,19 +2,19 @@ Rails.application.routes.draw do
 
   root :to => "homes#top"
   get "home/about" => "homes#about"
-  
+
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     registrations: "customers/registrations",
     passwords: "customers/passwords",
   }
-  
+
   namespace :admin do
     root to: 'homes#top'
     get 'customers/index'
-    resources :customers, :only => [:show, :edit, :update]  
+    resources :customers, :only => [:show, :edit, :update]
     end
-  
+
   devise_for :admins, controllers: {
     sessions: 'admin/sessions',
     registrations: "admin/registrations",
@@ -46,5 +46,14 @@ end
  namespace :admin do
   resources :genres
   end
+  resources :cart_items, only: [:index, :show, :create, :destroy, :update] do
+      delete 'destroy_all', on: :member
+      post 'create_order', on: :member
+    end
+    delete 'cart_item_destroy_all', to:'cart_items#destroy_all'
+    post 'create_order', to:'cart_items#create_order'
+
+
+    resources :order_items
 
 end
