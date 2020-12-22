@@ -1,0 +1,71 @@
+<%= render 'public/homes/header' %>
+<div class= "box1">
+<div class= "row">
+
+	<% if flash[:notice] %>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+<div class= "b">
+<p>ショッピングカート</p>
+</div>
+<%= link_to "カートを空にする", destroy_all_public_cart_item_path(current_customers.cart_items), method: :delete %>
+<% @total = 0 %>
+<table class="table">
+	<thead>
+		<tr>
+			<th>商品名</th>
+			<th>単価(税込)</th>
+			<th>数量</th>
+			<th>小計</th>
+		</tr>
+	</thead>
+	<tbody>
+　　　　　<tr>
+		<% current_customers.cart_items.each do |item| %>
+
+		<% tax = 1.1 %>
+		<tr>
+
+			<td><%= items.name %></td>
+				<% @product_price = items.price * tax %>
+			<td><%= converting_to_jpy(@product_price.floor) %>円</td>
+			<%= form_for(item, url: public_cart_items_path(item)) do |f| %>
+			<td><%= f.number_field :quentity,class: "col-xs-7 btn btn-default btn-lg" %></td>
+			<td><%= f.submit "変更" %></td>
+			<% end %>
+				<% @syoukei = @items_price * item.quentity %>
+			<td><%= converting_to_jpy(@syoukei.floor) %>円</td>
+
+			<% @subtotal = items.price * item.quentity * tax %>
+			<% @total += @subtotal %>
+
+			<td><%= link_to "削除", public_cart_items_path(item), method: :delete %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
+<%= link_to "買い物を続ける", public_items_categories_path %>
+<table>
+	<tr><p>合計金額</p></tr>
+    <td><%= converting_to_jpy(@total.floor) %>円</td>
+</table>
+<%= link_to "情報入力画面に進む", new_public_order_path %>
+</div>
+</div>
+
+<style>
+	.box1 {
+		display: flex;
+		justify-content: center;
+		margin-top:100px;
+		font-size: 4rem;
+	}
+    .b {
+    	background-color: #e91e6321;
+    	text-align: center;
+    	border-radius: 20px; 
+    }
+</style>
+	
