@@ -44,7 +44,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    public_customers_show_path(current_customer.id)
+    customers_my_page_path(current_customer.id)
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

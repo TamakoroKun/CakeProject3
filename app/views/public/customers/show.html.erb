@@ -2,7 +2,8 @@
 
 
 <p>登録情報</p>
-<%= link_to "編集する", public_customers_edit_path(current_customer) %><%= link_to "パスワードを変更する", edit_customer_password_path(current_customer) %>
+<%= link_to "編集する", customers_editer_path(current_customer) %>
+<%= link_to "パスワードを変更する", edit_customer_password_path(current_customer) %>
 
 <table class='table'>
   <thead>
@@ -41,5 +42,5 @@
 </table>
 
 配送先　<%= link_to "一覧を見る", addresses_path(current_customer) %>
-注文履歴　<%= link_to "一覧を見る", address_path(current_customer) %>
+注文履歴　<%= link_to "一覧を見る（仮）", address_path(current_customer) %>
 <%# 注文履歴のパスは別途　%>

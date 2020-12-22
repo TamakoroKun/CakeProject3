@@ -3,13 +3,18 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
  
   def after_sign_in_path_for(resource)
-    root_path
+    case resource
+    when Admin
+      admin_root_path
+    when Customer
+      root_path
+    end
   end
 
   def current_cart_items
     begin
-     CartItems.find(session[:cart_items_id])
-     rescue ActiveRecord::RecordNotFound
+    CartItems.find(session[:cart_items_id])
+    rescue ActiveRecord::RecordNotFound
      cart_items = CartItems.crete
      session[:cart_items_id] = cart_items.id
     end

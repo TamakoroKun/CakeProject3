@@ -1,2 +1,30 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
+
+<% if @customer.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= @customer.errors.count %>error</h2>
+
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+<% end %>
+
+<p>顧客ID</p><%= @customer.id %>
+
+<%= form_with model:@customer, local:true, url: admin_customer_path do |f| %>
+
+  <p>名前</p>
+  <%= f.text_field :last_name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <%= f.text_field :first_name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>フリガナ</p>
+  <%= f.text_field :last_name_kana, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <%= f.text_field :first_name_kana, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>郵便番号</p><%= f.text_field :postcode, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>住所</p>  <%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>電話番号（ハイフンなし）</p>  <%= f.text_field :phone_number, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <p>メールアドレス</p><%= f.text_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+  <%# form_withのボタンタグにて有効退会済みを変更できるようにする %>
+  <%= f.submit "変更を保存する" %>
+<% end %>
+
+<%= link_to "注文一覧を見る（仮）", root_path %>
