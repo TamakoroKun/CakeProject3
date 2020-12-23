@@ -61,3 +61,5 @@ gem "refile-mini_magick"
 gem 'payjp'
 
 gem "haml-rails", "~> 2.0"
+
+#gem 'pry-byebug'
