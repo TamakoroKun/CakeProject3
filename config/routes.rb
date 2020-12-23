@@ -13,12 +13,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'customers/index'
     resources :customers, :only => [:show, :edit, :update]  
-    end
+  end
   
   devise_for :admins, controllers: {
-    sessions: 'admin/sessions',
-    registrations: "admin/registrations",
-    passwords: "admin/passwords",
+    sessions: 'admin/sessions'
   }
 
   namespace :public do
@@ -28,9 +26,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get "customers/my_page" => "customers#show"
-    get "customers/editer" => "customers#edit"
+    # get "customers/editer" => "customers#edit"
     get "customers/unsubscribe" => "customers#unsubscribe"
-    patch "customers" => "customers#update"
+    resources :customers, :only => [:edit, :update]  
+    # patch "customers" => "customers#update"
     patch "customers/withdraw" => "customers#withdraw"
     resources :addresses,  :except => :new
   end

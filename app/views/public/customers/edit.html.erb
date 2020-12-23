@@ -8,7 +8,7 @@
     <% end %>
 <% end %>
 
-<%= form_with model:@customer, local:true, url: customers_path do |f| %>
+<%= form_with model:@customer, local:true, url: customer_path do |f| %>
   <p>名前</p>
   <p>性</p><%= f.text_field :last_name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
   <p>名</p><%= f.text_field :first_name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
