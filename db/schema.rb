@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2020_12_20_074604) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "end_user_id"
+    t.integer "quentity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

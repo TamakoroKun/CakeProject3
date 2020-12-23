@@ -1,0 +1,24 @@
+<h3>注文情報入力</h3>
+
+<h1>支払方法</h1>
+
+<%= form_with(model: @order, local: true) do |form| %>
+クレジットカード
+<%= form.radio_button :payment_method, :creditCard %>
+  
+銀行振込
+<%= form.radio_button :payment_method, :payBank %>
+
+<h1>お届け先</h1>
+
+ご自身の住所
+<%= form.radio_button :address, :myAddress %>
+  
+登録済住所から選択
+<%= form.radio_button :address, :keepAddress %>
+
+新しいお届け先
+<%= form.radio_button :address, :newAddress %>
+<% end %>
+
+#formラジオボタンの使い方をメンターに相談する。
