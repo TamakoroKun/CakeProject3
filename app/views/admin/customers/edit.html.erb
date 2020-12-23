@@ -23,8 +23,16 @@
   <p>住所</p>  <%= f.text_field :address, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
   <p>電話番号（ハイフンなし）</p>  <%= f.text_field :phone_number, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
   <p>メールアドレス</p><%= f.text_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
-  <%# form_withのボタンタグにて有効退会済みを変更できるようにする %>
-  <%= f.submit "変更を保存する" %>
+  <p>会員ステータス</p>
+  <div class="radio-inline">
+    <%= f.radio_button :is_deleted, :有効 %>
+    <%= f.label :有効 %>
+  </div>
+  <div class="radio-inline">
+    <%= f.radio_button :is_deleted, :退会済 %>
+    <%= f.label :退会済 %>
+  </div>  <%= f.submit "変更を保存する" %>
+
 <% end %>
 
 <%= link_to "注文一覧を見る（仮）", root_path %>
