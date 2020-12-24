@@ -2,23 +2,22 @@ Rails.application.routes.draw do
 
   root :to => "homes#top"
   get "home/about" => "homes#about"
-  
+
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     registrations: "customers/registrations",
     passwords: "customers/passwords",
   }
-  
+
   namespace :admin do
     root to: 'homes#top'
     get 'customers/index'
-    resources :customers, :only => [:show, :edit, :update]  
+
+    resources :customers, :only => [:show, :edit, :update]
     end
-  
+
   devise_for :admins, controllers: {
-    sessions: 'admin/sessions',
-    registrations: "admin/registrations",
-    passwords: "admin/passwords",
+    sessions: 'admin/sessions'
   }
 
   # namespace :public do
@@ -29,9 +28,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     get "customers/my_page" => "customers#show"
-    get "customers/editer" => "customers#edit"
+    # get "customers/editer" => "customers#edit"
     get "customers/unsubscribe" => "customers#unsubscribe"
-    patch "customers" => "customers#update"
+    resources :customers, :only => [:edit, :update]  
+    # patch "customers" => "customers#update"
     patch "customers/withdraw" => "customers#withdraw"
     resources :addresses,  :except => :new
     get 'orders/done'
@@ -52,5 +52,14 @@ end
  namespace :admin do
   resources :genres
   end
+  resources :cart_items, only: [:index, :show, :create, :destroy, :update] do
+      delete 'destroy_all', on: :member
+      post 'create_order', on: :member
+    end
+    delete 'cart_item_destroy_all', to:'cart_items#destroy_all'
+    post 'create_order', to:'cart_items#create_order'
+
+
+    resources :order_items
 
 end
