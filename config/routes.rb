@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+  resources :cart_items
   resources :items
   end
 

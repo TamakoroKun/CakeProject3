@@ -3,7 +3,10 @@ class Public::OrdersController < ApplicationController
     
   def index
     @customer = current_customer
+    @orders = current_customer.orders
+    # @orderItems = current_customer.items
     #@orderedItemHoge = @customer.orderedItem
+    #Itemsを呼ぶ必要があるが、Itemにはaddressなどが入ってない。これをeachでまとめて呼ぶ方法をメンターに相談する。
   end
   
   def new
@@ -46,6 +49,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
+    #binding.pry
     @order = current_customer.orders.new()
   end  
   
@@ -67,3 +71,6 @@ class Public::OrdersController < ApplicationController
   end
   
 end
+
+
+# Order.create(name: "おなまえ", postal_code: "000-0000", address: "東京都渋谷区道玄坂1-1", shipping_cost: 298, total_payment: 1200
