@@ -6,11 +6,14 @@ class Public::CartItemsController < ApplicationController
 
 
 	def create
-		@cart_items = current_customers.cart_items.new(cart_item_params)
-		if @cart_items.save
-			redirect_to public_cart_items_path(@items)
-		else render :index
-		end
+
+		@items = current_customer.cart_items.new(cart_item_params)
+			if @items.save
+				redirect_to public_cart_items_path(@items)
+			else
+				render :index
+			end
+	end
 
 
 		def update
@@ -35,9 +38,8 @@ class Public::CartItemsController < ApplicationController
 			@items = @customers.cart_items
 			@items.destroy_all
 			redirect_to public_cart_items_path
-		else　render :index
+		#else　render :index
 		end
-	end
 
 	private
 	def cart_item_params

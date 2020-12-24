@@ -7,7 +7,9 @@
       <ul class="nav navbar-nav navbar-right">
         <% if customer_signed_in? %>
           <li><%= link_to 'マイページ', customers_my_page_path, class: 'glyphicon glyphicon-home home' %></li>
-          <li><%= link_to '商品一覧', public_items_path, class: 'glyphicon glyphicon-customer customers' %></li>
+
+          <li><%= link_to '商品一覧（仮）', root_path, class: 'glyphicon glyphicon-customer customers' %></li>
+
           <li><%= link_to 'カート（仮）', root_path, class: 'glyphicon glyphicon-book books'%></li>
           <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
         <% elsif admin_signed_in? %>

@@ -20,10 +20,11 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  namespace :public do
-    get 'orders/done'
-    resources :orders
-  end
+  # namespace :public do
+  #   get 'orders/done'
+  #   post 'orders/confirm'
+  #   resources :orders
+  # end
 
   scope module: :public do
     get "customers/my_page" => "customers#show"
@@ -33,9 +34,14 @@ Rails.application.routes.draw do
     # patch "customers" => "customers#update"
     patch "customers/withdraw" => "customers#withdraw"
     resources :addresses,  :except => :new
+    get 'orders/done'
+    post 'orders/confirm'
+    resources :orders
+    
   end
 
   namespace :public do
+  resources :cart_items
   resources :items
   end
 
