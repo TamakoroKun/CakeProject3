@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_074604) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end魏t魏t
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
