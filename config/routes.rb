@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
+
   namespace :public do
     get 'customers/show'
     get 'customers/edit'
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
     get 'orders/done'
     resources :orders
   end
+
 
   scope module: :public do
     get "customers/my_page" => "customers#show"
@@ -45,9 +47,14 @@ Rails.application.routes.draw do
     # patch "customers" => "customers#update"
     patch "customers/withdraw" => "customers#withdraw"
     resources :addresses,  :except => :new
+    get 'orders/done'
+    post 'orders/confirm'
+    resources :orders
+
   end
 
   namespace :public do
+  resources :cart_items
   resources :items
   end
 
@@ -59,12 +66,11 @@ end
   resources :genres
   end
 
-  resources :cart_items, only: [:index, :show, :create, :destroy, :update] do
-      delete 'destroy_all', on: :member
-      post 'create_order', on: :member
-    end
-    delete 'cart_item_destroy_all', to:'cart_items#destroy_all'
-    post 'create_order', to:'cart_items#create_order'
+scope module: :public do
+  resources :cart_items
+   delete 'cart_item_destroy_all', to:'cart_items#destroy_all'
+ end
+
 
 
     resources :order_items
