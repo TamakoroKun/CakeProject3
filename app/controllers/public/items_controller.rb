@@ -4,11 +4,18 @@ require 'payjp'
 
  def index
      @items = Item.all
+     @genres = Genre.all
+
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @items = @genre.items
+    end
+
  end
 
   def show
     @item = Item.find(params[:id])
-     @cart_item = CartItem.new
+    @cart_items = CartItem.new
   	@genres = Genre.all
   end
 
