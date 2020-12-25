@@ -1,6 +1,6 @@
 <h3>注文情報確認</h3>
 
-
+<table>
   <thead>
     <tr>
       <th></th>
@@ -24,12 +24,19 @@
         <td>表示するボタン</td>
       </tr>
   </tbody>
-  
+</table>
   支払い方法　"クレジットカード"
   
   お届け先　"ooo-ooooo"
   
-  = form_with url: purchase_item_path do
-  :plain
-    <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="
-pk_test_7195834ff768a651c7d6e511"></script>
+<%=  form_with model: @order, local: true do |form| %>
+ <%= form.hidden_field :payment_method, value: @order.payment_method %>
+ <%= form.hidden_field :name, value: @order.name %>
+ <%= form.hidden_field :address, value: @order.address %>
+ <%= form.hidden_field :postal_code, value: @order.postal_code %>
+ <%= form.hidden_field :shipping_cost, value: @order.shipping_cost %>
+ <%= form.hidden_field :total_payment, value: @order.total_payment %>
+
+ <% form.submit "購入を確定する" ,data: {confirm: "本当に購入してもよろしいですか？"}, class: "btn btn-primary" %>
+
+<% end %>
