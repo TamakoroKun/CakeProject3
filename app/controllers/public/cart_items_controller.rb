@@ -9,13 +9,11 @@ class Public::CartItemsController < ApplicationController
  def create
    @cart_item = CartItem.new(cart_item_params)
    @cart_item.customer_id = current_customer.id
-   @validate_into_cart = @cart_item.validate_into_cart
-   if @validate_into_cart == false
+   if @cart_item.save
+     redirect_to cart_items_path
+   else
       flash[:into_cart_error] = "個数が選択されていないか、すでにカートに追加されているアイテムです。"
       redirect_to item_path(params[:cart_item][:item_id])
-   else
-     @cart_item.save
-     redirect_to cart_items_path
    end
  end
 
@@ -38,13 +36,13 @@ class Public::CartItemsController < ApplicationController
 
  private
  def cart_item_params
-   params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
+   params.require(:cart_item).permit(:customer_id, :item_id, :quentity)
  end
 
  def calculate(user)
    total_price = 0
    user.cart_items.each do |cart_item|
-     total_price += cart_item.quantity * cart_item.item.price
+     total_price += cart_item.quentity * cart_item.item.price
    end
    return (total_price * 1.1).floor
  end
