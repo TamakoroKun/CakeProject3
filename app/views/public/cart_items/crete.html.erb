@@ -1,0 +1,18 @@
+<% unless current_customer == @customer %>
+
+    <%= form_for(current_customer.cart_items.build) do |f| %>
+      <%= hidden_field_tag :item_id, @customer.id %>
+      <%= f.submit 'カートに入れる' %>
+    <% end %>
+<% end %>
+ <% if flash[:success] %>
+      <div class="flash">
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="flash">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>

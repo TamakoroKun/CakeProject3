@@ -1,71 +1,71 @@
-<%#= render 'public/homes/header' %>
-<!--#エラーが出てます。-->
-<div class= "box1">
-<div class= "row">
+<div class="container my-5">
+    <div class="row">
+      <div class="offset-1">
+        <h2 class="red-border px-3 pb-1">ショッピングカート</h2>
+      </div>
 
-	<% if flash[:notice] %>
-<div class="flash">
-	<%= flash[:notice] %>
+      <div class="ml-auto">
+        <%= link_to "カートを空にする", cart_items_path, method: :delete, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="offset-1 col-9">
+        <table class="table table-borderless">
+          <thead>
+            <tr class="red-border">
+              <th>商品名</th>
+              <th>単価(税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+
+          <% @cart_items.each do |cart_item| %>
+            <tbody>
+              <tr class="brown-border">
+                <td class="align-middle">
+                  <%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "no_image.jpg" %>
+                  <span><%= cart_item.item.name %></span>
+                </td>
+                <td class="align-middle"><%= (cart_item.item.price * 1.1).floor %></td>
+                <td class="align-middle" style="width: 130px;">
+                  <%= form_for(cart_item) do |f| %>
+                  <div class="row">
+                    <%= f.number_field :quantity, min:1,class: "col-6" %>
+                    <%= f.submit "変更", class: "btn btn-sm btn-outline-danger offset-1 col-4" %>
+                  </div>
+                  <% end %>
+                </td>
+
+                <td class="align-middle">
+                  <%= (cart_item.item.price * 1.1).floor * cart_item.quantity %>
+                </td>
+
+                <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+      <div class="row my-3">
+        <div class="offset-9">
+          <strong class="red-border px-3 pb-1">合計金額 <%= @total_price %>円</strong>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="offset-1 col-2">
+        <%= link_to "買い物を続ける", items_path, class: "btn btn-outline-danger mt-5" %>
+      </div>
+      <% if @cart_items != [] %>
+      <div class="offset-6">
+        <%= link_to "情報入力に進む", new_order_path, class: "btn btn-outline-danger mt-5" %>
+      <% end %>
+      </div>
+    </div>
 </div>
-<% end %>
-<div class= "b">
-<p>ショッピングカート</p>
-</div>
-<%= link_to "カートを空にする", cart_item_destroy_all_path, method: :delete %>
-<% @total = 0 %>
-<table class="table">
-	<thead>
-		<tr>
-			<th>商品名</th>
-			<th>単価(税込)</th>
-			<th>数量</th>
-			<th>小計</th>
-		</tr>
-	</thead>
-	<tbody>
-　　　　　<tr>
-		<% current_customer.cart_items.each do |item| %>
-
-		<% tax = 1.1 %>
-		<tr>
-
-			<td><%= items.name %></td>
-				<% @product_price = items.price * tax %>
-			<td><%= converting_to_jpy(@product_price.floor) %>円</td>
-			<%= form_for(item, url: public_cart_items_path(item)) do |f| %>
-			<td><%= f.number_field :quentity,class: "col-xs-7 btn btn-default btn-lg" %></td>
-			<td><%= f.submit "変更" %></td>
-			<% end %>
-				<% @syoukei = @items_price * item.quentity %>
-			<td><%= converting_to_jpy(@syoukei.floor) %>円</td>
-
-			<% @subtotal = items.price * item.quentity * tax %>
-			<% @total += @subtotal %>
-
-			<td><%= link_to "削除", public_cart_items_path(item), method: :delete %></td>
-		</tr>
-	</tbody>
-	<% end %>
-</table>
-<%= link_to "買い物を続ける", public_items_path %>
-<table>
-	<tr><p>合計金額</p></tr>
-
-</table>
-<%= link_to "情報入力画面に進む", new_public_order_path %>
-</div>
-</div>
-
-<style>
-	.box1 {
-		display: flex;
-		justify-content: center;
-		margin-top:100px;
-		font-size: 4rem;
-	}
-    .b {
-    	background-color: #e91e6321;
-    	text-align: center;
-    	border-radius: 20px;
-    }
-</style>
+© 2020 GitHub, Inc.
