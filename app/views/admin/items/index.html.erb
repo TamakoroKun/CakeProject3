@@ -31,7 +31,12 @@
 
       <th><%= item.price %></th>
       <th><%= item.genre.name %></th>
-      <th><%= item.is_active %></th>
+      <th><% if item.is_active == true %>
+          <p>販売可</p>
+          <% else %>
+          <P>販売不可</P>
+          <% end %>
+      </th>
     </tr>
     <% end %>
   </tbody>

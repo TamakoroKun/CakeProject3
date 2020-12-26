@@ -1,12 +1,14 @@
 class Public::ItemsController < ApplicationController
 
  def index
-     @items = Item.all
-     @genres = Genre.all
+     @items_before = Item.all
+     @genres = Genre.where(is_active: true)
+     @items = @items_before.where(is_active: true)
 
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @items = @genre.items
+      @items_before = @genre.items
+      @items = @items_before.where(is_active: true)
     end
 
  end
