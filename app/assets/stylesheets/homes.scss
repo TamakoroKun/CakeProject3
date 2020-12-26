@@ -1,3 +1,23 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.col-lg-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-visual {
+  background-image: url(topcake.jpg);
+  background-size: cover;
+}
+
+.main-visual-content {
+  width: 40%;
+  height: 300px;
+  text-align: center;
+  padding-top: 105px;
+}
+
+.main-visual-text {
+  color: #fff;
+}

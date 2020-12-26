@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     get 'customers/index'
-
     resources :customers, :only => [:show, :edit, :update]
     end
 

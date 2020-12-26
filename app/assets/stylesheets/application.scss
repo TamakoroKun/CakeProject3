@@ -13,7 +13,12 @@
  *= require_tree .
  *= require_self
  */
- 
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+a:link, a:visited, a:hover, a:active {
+  color: black;
+}
