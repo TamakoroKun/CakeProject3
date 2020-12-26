@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get 'orders/done'
     post 'orders/confirm'
     resources :orders
+  resources :items
 
   end
 
