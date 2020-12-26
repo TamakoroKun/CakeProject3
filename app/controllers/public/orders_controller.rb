@@ -62,10 +62,18 @@ class Public::OrdersController < ApplicationController
     #binding.pry
     @order_detail = OrderDetail.new
     @order = current_customer.orders.new(order_params)
-    current_customer.cart_items.each do |order_detail|
-      @order_details.order_id = @order.id
-    end
     @order.save
+
+    current_customer.cart_items.each do |cart_item|
+      @order_details.order_id = @order.id
+      @order_detail.item_id = cart_item.item_id #商品idを注文商品idに代入
+      @order_detail.number_of_items = cart_item.amount #商品の個数を注文商品の個数に代入
+      @order_detail.items_tax_included_price = (cart_item.item.price*1.1).floor #消費税込みに計算して代入
+      @order_detail.order_id =  @order.id #注文商品に注文idを紐付け
+      @order_detail.save #注文商品を保存
+
+
+    end
     current_customer.cart_items.destroy_all
     redirect_to public_orders_done_path
   end
