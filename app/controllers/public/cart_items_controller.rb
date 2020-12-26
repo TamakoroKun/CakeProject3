@@ -39,9 +39,9 @@ class Public::CartItemsController < ApplicationController
    params.require(:cart_item).permit(:customer_id, :item_id, :quentity)
  end
 
- def calculate(user)
+ def calculate(customer)
    total_price = 0
-   user.cart_items.each do |cart_item|
+   customer.cart_items.each do |cart_item|
      total_price += cart_item.quentity * cart_item.item.price
    end
    return (total_price * 1.1).floor
