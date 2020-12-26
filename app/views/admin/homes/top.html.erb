@@ -1,0 +1,4 @@
+<h2>管理者画面</h2>
+
+<p>本日の注文件数</p>　
+select count(id) as new_address_count, date_format(created_at ,'%Y-%m-%d') as day from addresses group by day;
