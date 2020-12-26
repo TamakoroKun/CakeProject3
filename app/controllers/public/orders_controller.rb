@@ -37,9 +37,13 @@ class Public::OrdersController < ApplicationController
       #current_customer.addressesは仮。adressesをプルダウンから選んでadressに入れたい。
       
     elsif params[:order][:address_option] == "2"
-    　@address = Address.new(address_params)
-    　@address.customer_id = current_customer.id
-    　
+      @address = Address.new
+      @address.customer_id = current_customer.id
+      @address.postal_code = params[:order][:postal_code]
+      @address.name = params[:order][:name]
+      @address.address = params[:order][:address]
+      
+      
     else
       
     end
