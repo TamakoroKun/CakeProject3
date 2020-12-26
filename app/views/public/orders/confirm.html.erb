@@ -14,15 +14,12 @@
       <tr>
         <td><%= cart_item.item.name %></td>
         <td><%= cart_item.item.price %></td>
-
         <td><%= cart_item.quentity %></td>
         <td><%= cart_item.item.price * cart_item.quentity %></td>
-
       </tr>
     <% end %>
   </tbody>
 </table>
-a
 
 支払い方法<%= @order.payment_method %>
 
@@ -30,7 +27,7 @@ a
 <%= @order.postal_code %>
 <%= @order.address %>
 <%= @order.name %>
-
+<!--↑表示されない-->
 
 <%=  form_with model: @order, local: true do |form| %>
  <%= form.hidden_field :payment_method, value: @order.payment_method %>

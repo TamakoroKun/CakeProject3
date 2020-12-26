@@ -41,7 +41,7 @@
                 <td class="align-middle">
                   <%= (cart_item.item.price * 1.1).floor * cart_item.quentity %>
                 </td
-                <td class="align-middle"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
+                <td class="right"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
               </tr>
             </tbody>
           <% end %>
