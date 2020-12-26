@@ -43,16 +43,18 @@ class Public::OrdersController < ApplicationController
       @address.postal_code = params[:order][:postal_code]
       @address.name = params[:order][:name]
       @address.address = params[:order][:address]
-      
+
     else
 
     end
     @customer = current_customer
+    @cart_items = current_customer.cart_items
+
   end
 
   def create
     #binding.pry
-    @order = current_customer.orders.new()
+    @order = current_customer.orders.new(address_params)
   end
 
   def done
@@ -60,8 +62,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-        @customer = Customer.find(params[:id])
-        #@orderedItemHoge = @customer.orderedItem
+    @customer = Customer.find(params[:id])
+    #@orderedItemHoge = @customer.orderedItem
   end
 
 
