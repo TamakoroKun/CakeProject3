@@ -9,10 +9,9 @@
     <% end %>
   </div>
 
-<%= form_with model: @item, url:  admin_items_path, local: true do |f| %>
+  <%= form_for(@item, url: admin_items_path) do |f| %>
 
-
-  <div class="row mt-5">
+    <div class="row mt-5">
       <div class="col-sm-4">
         <%= f.label :商品画像 %>
         <%= f.attachment_field :image %>
@@ -42,7 +41,7 @@
 
         <div class="form-group row">
           <%= f.label :販売ステータス, class: "col-sm-4" %>
-          <%= f.select :is_active, [["販売可", "true"], ["販売不可","false"]], class: "form-control col-sm-8" %>
+          <%= f.select :sale_status, [["販売可", "販売可"], ["販売不可","販売不可"]], class: "form-control col-sm-8" %>
         </div>
       </div>
 

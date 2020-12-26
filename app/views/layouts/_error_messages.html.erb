@@ -1,7 +1,7 @@
 <% if model.errors.any? %>
-  <div class="alert alert-warning">
-    <ul>
-      <% model.errors.full_messages.each do |message| %>
+  <div id="error-explanation" class="alert alert-danger">
+  	 <h2><%= model.errors.count %> error prohibited this obj from being saved:</h2>
+    <ul><% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>

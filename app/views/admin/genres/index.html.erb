@@ -1,27 +1,33 @@
 <div class="container my-5">
 
-    <div class="row">
-      <h2>ジャンル追加・一覧</h2>
-    </div>
+  <div class="row">
+    <h2>ジャンル追加・一覧</h2>
+  </div>
 
-    <div class="row mt-5">
+  <div class="row mt-5">
     <div class="offset-sm-1 col-sm-4">
 
-    <div class="form-wrap border rounded p-5">
-    <div class="row d-flex justify-content-center">
-      <strong>新規ジャンル登録</strong>
-    </div>
+      <div class="form-wrap border rounded p-5">
+        <div class="row d-flex justify-content-center">
+          <strong>新規ジャンル登録</strong>
+        </div>
 
-<%= form_for(@genre, url: admin_genres_path) do |f| %>
+        <div class="row d-flex justify-content-center">
+          <% if flash[:genre_created_error] %>
+            <span class="text-danger"><%= flash[:genre_created_error] %></span>
+          <% end %>
+        </div>
+
+      <%= form_for(@genre, url: admin_genres_path) do |f| %>
         <div class="form-group">
           <%= f.text_field :name, class: "form-control" %>
         </div>
 
         <div class="form-check">
-          <%= f.radio_button :is_active, :true %>
-          <%= f.label :is_active, "有効" %>
-          <%= f.radio_button :is_active, :false %>
-          <%= f.label :is_active, "無効" %>
+          <%= f.radio_button :is_enabled, :true %>
+          <%= f.label :is_enabled, "有効" %>
+          <%= f.radio_button :is_enabled, :false %>
+          <%= f.label :is_enabled, "無効" %>
         </div>
 
         <div class="row">
@@ -46,7 +52,7 @@
             <tr>
               <td><%= genre.name %></td>
               <td>
-                <% if genre.is_active == true %>
+                <% if genre.is_enabled == true %>
                   有効
                 <% else %>
                   無効
@@ -61,3 +67,4 @@
 
   </div>
 </div>
+

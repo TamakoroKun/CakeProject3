@@ -9,7 +9,7 @@ class Admin::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   # More info at:
-  # https://github.com/heartcombo/devise#omniauth
+  # https://github.com/plataformatec/devise#omniauth
 
   # GET|POST /resource/auth/twitter
   # def passthru
