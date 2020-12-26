@@ -63,3 +63,6 @@ gem 'payjp'
 gem "haml-rails", "~> 2.0"
 
 gem 'pry-byebug'
+
+gem 'rails-i18n'
+gem 'enum_help' 

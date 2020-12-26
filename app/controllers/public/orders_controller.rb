@@ -16,9 +16,7 @@ class Public::OrdersController < ApplicationController
   end  
   
   def confirm
-    
     @order = Order.new
-
     # パラメータで送ったものは全部受け取る
     # 支払いアドレスメールetc...おしなべてコンファームのしたのやつ。それを@ordersの中に入れる。
     # address_optionで送った3種類の方式をどうやって場合分けするのか。
