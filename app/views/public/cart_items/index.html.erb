@@ -2,9 +2,11 @@
     <div class="row">
       <div class="offset-1">
         <h2 class="red-border px-3 pb-1">ショッピングカート</h2>
+
       </div>
 
       <div class="ml-auto">
+         <%= link_to "カートを空にする", cart_item_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger" %>
       </div>
     </div>
 
@@ -41,7 +43,7 @@
                 <td class="align-middle">
                   <%= (cart_item.item.price * 1.1).floor * cart_item.quentity %>
                 </td
-                <td class="right"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
+                <td class="text-right"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
               </tr>
             </tbody>
           <% end %>
