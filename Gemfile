@@ -65,4 +65,6 @@ gem "haml-rails", "~> 2.0"
 gem 'pry-byebug'
 
 gem 'rails-i18n'
-gem 'enum_help' 
+gem 'enum_help'
+
+gem 'pry-rails'
