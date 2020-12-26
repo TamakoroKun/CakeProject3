@@ -69,7 +69,11 @@ scope module: :public do
   resources :cart_items
    delete 'cart_item_destroy_all', to:'cart_items#destroy_all'
  end
-
+ 
+namespace :admin do
+  resources :cart_items
+    delete 'cart_item_destroy_all', to:'cart_items#destroy_all'
+  end
 
 
     resources :order_items
