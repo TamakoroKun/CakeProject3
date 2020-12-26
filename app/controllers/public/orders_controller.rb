@@ -49,6 +49,8 @@ class Public::OrdersController < ApplicationController
     end
     @customer = current_customer
     @cart_items = current_customer.cart_items
+    @order = Order.new(params[:id])
+
 
   end
 

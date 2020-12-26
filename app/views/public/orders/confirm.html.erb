@@ -20,13 +20,14 @@
     <% end %>
   </tbody>
 </table>
+a
 
+支払い方法<%= @order.payment_method %>
 
-  支払い方法　"クレジットカード"
-
-  <p>お届け先</p>
-  <td><%= @order.postal_code %><%= @order.address %></td>
-  <td><%= @order.name %></td>
+お届け先
+<%= @order.postal_code %>
+<%= @order.address %>
+<%= @order.name %>
 
 
 <%=  form_with model: @order, local: true do |form| %>
