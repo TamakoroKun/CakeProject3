@@ -62,6 +62,7 @@ class Public::OrdersController < ApplicationController
     #binding.pry
     @order = current_customer.orders.new(order_params)
     @order.save
+    current_customer.cart_items.destroy_all
     redirect_to public_orders_done_path
   end
 
