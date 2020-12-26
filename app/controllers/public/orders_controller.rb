@@ -73,6 +73,8 @@ class Public::OrdersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     #@orderedItemHoge = @customer.orderedItem
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
 

@@ -25,7 +25,7 @@
               <% if @order.address.length <8 %>
               <% addresses = ShipAddress.find(@order.address) %>
               <td>
-                <%= "〒" + addresses.postal_code + "  " + addresses.address + "  " + addresses.last_name + addresses.first_name %>
+                <%= "〒" + @address.postal_code + "  " + @address.address + "  " + @order.name %>
               </td>
               <% else %>
               <td><%= @order.address %></td>
@@ -98,7 +98,7 @@
         <% @order_details.each do |d| %>
         <tbody>
           <tr class="brown-border">
-            <td><%= d.item_name %></td>
+            <td><%= d.item.name %></td>
             <td><%= (d.price * 1.1).floor %></td>
             <td><%= d.amount %></td>
             <td><%= ((d.price * d.amount) * 1.1).floor %></td>
