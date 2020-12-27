@@ -27,7 +27,7 @@
           </tr>
 
           <tr>
-            <td>税込価格(税抜価格)</td>
+            <td>税抜価格(税込価格)</td>
             <td>
               <%= @item.price %>(<%= (@item.price * 1.1).floor %>)円
             </td>
@@ -35,7 +35,11 @@
 
           <tr>
             <td>販売ステータス</td>
-            <td><%= @item.is_active %></td>
+            <td><% if @item.is_active == true %>
+          <p>販売可</p>
+          <% else %>
+          <P>販売不可</P>
+          <% end %></td>
           </tr>
         </tbody>
 

@@ -1,37 +1,34 @@
-<h2>管理者画面</h2>
 
-<p>本日の注文件数</p>
+<main>
 
+  <div class='container'>
+    	<div class='col-xl-12'>
+    	  <div class="mx-auto" style="min-width: 1000px;">
+    	  <div class="main-visual">
+    	    <div class="main-visual-content">
+            <p class="main-visual-text">
+              Welcome to NaganoCake<br />
+              Our cakes make you happy<br />
+            </p>
+          </div>
+    	  </div>
+        <h2>おすすめ商品</h2>
 
-<div class="container">
-  <div class="row mt-5">
-    <h2>管理者画面</h2>
-  </div>
-
-  <div class="row mt-5">
-    
-    <div class="col-2">
-      <p>本日受注した注文件数</p>
+  	<% @items.each do |item| %>
+    <div class="col-3 mt-3"> <!--ひとつのブロックをラップしてカラムを指定する-->
+      <%= link_to public_items_path(item) do %><!--それをeach文で回す-->
+        <%= attachment_image_tag item, :image, size: "150x150", format: 'jpeg', fallback: "noimage.jpg", class: 'rounded' %>
+      <% end %><br>
+      <strong class="red-border"><%= link_to item.name,public_item_path(item.id) %></strong><br>
+      <span class="ml-auto"><%= (item.price * 1.1).floor %>円</span><br>
     </div>
+  <% end %>
 
-    <div class="col-3">
-      <p><%= link_to admin_today_orders_path do %>
-        <%= Order.where(created_at:  Time.zone.now.all_day).count %>
-        <% end %>件</p>
-      <!-- 表示件数 => 今日1日のデータ数をカウント。 -->
-    </div>
-  </div>
 
-  <div class="row mt-3">
-    <div class="col-sm-2">
-      <p>本日製作分の注文件数</p>
-    </div>
+        <%= link_to "もっと見る>", root_path %>
+    	</div>
 
-    <div class="col-sm-3">
-      <p><%= link_to admin_yesterday_orders_path do %>
-        <%= Order.where(created_at: 1.day.ago.all_day).count %>
-        <% end %>件</p>
-      <!-- 表示件数 => 昨日1日のデータ数をカウント。 -->
+      </div>
     </div>
   </div>
-</div>
+</main>

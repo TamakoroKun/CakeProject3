@@ -59,12 +59,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    #binding.pry
-    @order_detail = OrderDetail.new
+     #binding.pry
     @order = current_customer.orders.new(order_params)
-    current_customer.cart_items.each do |order_detail|
-      @order_details.order_id = @order.id
-    end
     @order.save
     current_customer.cart_items.destroy_all
     redirect_to public_orders_done_path
